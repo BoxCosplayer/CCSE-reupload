@@ -48,7 +48,7 @@ export async function GET(req: Request) {
 
         // Apply filter if provided
         if (filter) {
-            // @ts-expect-error
+            // @ts-expect-error This is necessary
             query = query.where(like(logsTable.eventID, `%${filter}%`));
         }
 
