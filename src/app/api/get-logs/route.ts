@@ -48,7 +48,8 @@ export async function GET(req: Request) {
 
         // Apply filter if provided
         if (filter) {
-            // @ts-expect-error This is necessary
+            // @ts-expect-error: The `like` function does not have proper TypeScript definitions for this use case
+            // This is necessary
             query = query.where(like(logsTable.eventID, `%${filter}%`));
         }
 
