@@ -25,7 +25,7 @@ export default function ManageProductPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [loggedInUserID, setLoggedInUserID] = useState<string | null>(null);
+    const [, setLoggedInUserID] = useState<string | null>(null);
     const [isSeller, setIsSeller] = useState<boolean>(false); // ✅ Track if user is the seller
 
     useEffect(() => {

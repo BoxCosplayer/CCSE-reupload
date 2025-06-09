@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
        return NextResponse.redirect(new URL("/account/login", req.url));
     }
 
-    // @ts-ignore
+
     const { payload } = await jose.jwtVerify(token, SECRET_KEY);
 
     try {

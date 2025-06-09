@@ -1,22 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 // Define the user type
-type User = {
-    id: string;
-    name: string;
-    username: string;
-    password?: string;
-    roleID: string;
-    addLine1: string;
-    addLine2?: string;
-    addLine3?: string;
-    city: string;
-    postcode: string;
-};
-
 export default function EditUserPage() {
     const { userID } = useParams();
     const [userData, setUserData] = useState({

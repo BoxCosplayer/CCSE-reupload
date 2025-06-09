@@ -45,9 +45,9 @@ export default function LoginPage() {
             setTimeout(() => {
                 window.location.href = "/"; // Redirect after login
             }, 2000);
-        } catch (error: any) {
-            setMessage(error.message);
+        } catch (error) {
             setLoading(false);
+            setMessage(error instanceof Error ? error.message : "An unexpected error occurred");
         }
     };
 

@@ -19,10 +19,10 @@ type Product = {
 };
 
 export default function ManageProductsPage() {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [selectedSort, setSelectedSort] = useState<string | null>(null);
-    const [loggedInSellerID, setLoggedInSellerID] = useState<string | null>(null);
+    const [, setLoggedInSellerID] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchProducts = async () => {

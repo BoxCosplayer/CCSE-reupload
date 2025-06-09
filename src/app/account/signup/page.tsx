@@ -52,9 +52,9 @@ export default function SignupPage() {
             setTimeout(() => {
                 window.location.href = "/account/login"; // Redirect after signup
             }, 2000);
-        } catch (error: any) {
-            setMessage(error.message);
+        } catch (error) {
             setLoading(false);
+            setMessage(error instanceof Error ? error.message : "An unexpected error occurred");
         }
     };
 

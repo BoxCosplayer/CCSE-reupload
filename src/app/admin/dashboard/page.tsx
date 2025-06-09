@@ -17,7 +17,7 @@ type LogEntry = {
 export default function AdminDashboard() {
     const [logs, setLogs] = useState<LogEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [user, setUser] = useState(null);
+    const [, setUser] = useState(null);
     const router = useRouter();
 
     useEffect(() => {

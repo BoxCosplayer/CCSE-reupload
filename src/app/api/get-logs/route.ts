@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import {eventsTable, logsTable, usersTable} from "@/db/schema";
-import { desc, eq, and, like, sql } from "drizzle-orm";
+import { desc, eq, like, sql } from "drizzle-orm";
 
 import {logEvent, rateLimit, validateRequestOrigin} from "@/utils/apisecurity";
 
@@ -48,7 +48,7 @@ export async function GET(req: Request) {
 
         // Apply filter if provided
         if (filter) {
-            // @ts-ignore
+            // @ts-expect-error
             query = query.where(like(logsTable.eventID, `%${filter}%`));
         }
 

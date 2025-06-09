@@ -24,7 +24,7 @@ export default function CartPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
     const [discountCode, setDiscountCode] = useState("");
-    const [discountApplied, setDiscountApplied] = useState<number | null>(null);
+    const [, setDiscountApplied] = useState<number | null>(null);
     const router = useRouter();
 
     useEffect(() => {

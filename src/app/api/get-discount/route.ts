@@ -33,6 +33,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ discount: Number(discount[0].amount) }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to validate discount" }, { status: 500 });
+        console.error("Error fetching discount:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

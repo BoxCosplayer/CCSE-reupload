@@ -13,23 +13,25 @@ export default function CheckoutPage() {
     useEffect(() => {
         const processCheckout = async () => {
             try {
-                const response = await fetch("/api/process-checkout", {
+                const response = await fetch("/api/checkout", {
                     method: "POST",
+                    headers: { "Content-Type": "application/json" },
                 });
 
-                const data = await response.json();
-
-                if (response.ok) {
-                    setStatusMessage("🎉 Thank you for your purchase!");
-                } else {
-                    setStatusMessage(`❌ Error: ${data.error}`);
+                if (!response.ok) {
+                    throw new Error("Checkout failed. Please try again.");
                 }
-            } catch (error) {
-                setStatusMessage("❌ An error occurred during checkout.");
-            }
 
-            // ✅ Redirect to home after 3 seconds
-            setTimeout(() => router.push("/"), 3000);
+                const data = await response.json();
+                setStatusMessage(data.message || "Order processed successfully!");
+
+                // Redirect to order confirmation page after a delay
+                setTimeout(() => {
+                    router.push("/order-confirmation");
+                }, 2000);
+            } catch (error) {
+                setStatusMessage(error instanceof Error ? error.message : "An unexpected error occurred");
+            }
         };
 
         processCheckout();
