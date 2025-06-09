@@ -1,1 +1,42 @@
+name: Security Checks
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  snyk:
+    name: Snyk Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: test
+
+  zap:
+    name: OWASP ZAP Scan (Netlify)
+    runs-on: ubuntu-latest
+    needs: snyk
+
+    steps:
+      - name: Run ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          target: 'https://your-netlify-site.netlify.app'
